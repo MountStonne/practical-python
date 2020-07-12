@@ -19,10 +19,14 @@ def portfolio_cost(filename):
     '''
     cost = 0
     with open('/Users/shuowang/practical-python/Work/Data/' + str(filename), 'rt') as portfolio:
-       headers = next(portfolio)
-       for line in portfolio:
-           row = line.split(',')
-           shares = float(row[1])
-           price = float(row[2])
-           cost += shares * price
+        headers = next(portfolio)
+        for line in portfolio:
+            try:
+                row = line.split(',')
+                shares = float(row[1])
+                price = float(row[2])
+                cost += shares * price
+            except ValueError:
+                print('Bad row:',row)
+    
     print('Total cost', cost)
