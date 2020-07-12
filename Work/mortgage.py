@@ -19,12 +19,12 @@ while principal > 0:
     else: 
         principal = principal * (1+rate/12) - payment
         total_paid = total_paid + payment
-    print(count, round(total_paid,2), round(principal,2))
+    print(count, f'{total_paid:0.2f}', f'{principal:0.2f}')
     if principal < payment:
         count += 1
         total_paid = total_paid + principal
         principal = 0
-        print(count, round(total_paid,2), round(principal,2))
+        print(count, f'{total_paid:0.2f}', f'{principal:0.2f}')
 
-print('Total paid', round(total_paid,2))
+print('Total paid', f'{total_paid:0.2f}')
 print('Months', count)
