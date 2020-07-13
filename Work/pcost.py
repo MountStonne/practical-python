@@ -31,8 +31,9 @@
     
 #     print('Total cost', cost)
 
-## Exercise 1.32
+## Exercise 1.32 & 1.33
 import csv
+import sys
 def portfolio_cost(filename):
     cost = 0
     with open('/Users/shuowang/practical-python/Work/Data/' + str(filename), 'rt') as portfolio:
@@ -45,4 +46,12 @@ def portfolio_cost(filename):
                 cost += shares * price
             except ValueError:
                 print('Bad row:',row)
-    print('Total cost', cost)
+    return cost
+
+if len(sys.argv) == 2:
+    filename = sys.argv[1]
+else:
+    filename = 'portfolio.csv'
+
+total_cost = portfolio_cost(filename)
+print('Total cost:', total_cost)
