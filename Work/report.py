@@ -4,7 +4,7 @@
 
 import csv
 
-def portfolio_cost(filename):
+def read_portfolio(filename):
     '''Read in the holding from a portfolio'''
     portfolio = []
 
@@ -12,6 +12,6 @@ def portfolio_cost(filename):
         rows = csv.reader(f)
         headers = next(rows)
         for row in rows:
-            holding = (wor[0], int(row[1]), float(wor[2]))
+            holding = (row[0], int(row[1]), float(row[2]))
             portfolio.append(holding)
     return portfolio
