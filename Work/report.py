@@ -31,19 +31,19 @@ def read_prices(filename):
             except IndexError:
                 pass
     return prices
+def make_report(portfolio, prices):
+    '''Make a table'''
+    rows = []
+    for prows in portfolio:
+        current_price = prices[prows['name']]
+        change = current_price - prows['price']
+        holding = (prows['name'], prows['shares'], current_price, change)
+        rows.append(holding)
+    return rows
 
 portfolio = read_portfolio('Data/portfolio.csv')
 prices    = read_prices('Data/prices.csv')
+report = make_report(portfolio, prices)
 
-cost = 0.0
-for a in portfolio:
-    cost += a['shares']*a['price']
-
-print('Total cost', cost)
-
-value = 0.0
-for b in portfolio:
-    value += b['shares']*prices[b['name']]
-
-print('Current value', value)
-print('Gain', value - cost)
+for r in report:
+    print(r)
