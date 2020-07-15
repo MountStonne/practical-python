@@ -54,5 +54,5 @@ if len(sys.argv) == 2:
 else:
     filename = 'portfolio.csv'
 
-total_cost = portfolio_cost('missing.csv')
+total_cost = portfolio_cost('portfoliodate.csv')
 print('Total cost:', total_cost)
