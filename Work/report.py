@@ -36,8 +36,9 @@ def make_report(portfolio, prices):
     rows = []
     for prows in portfolio:
         current_price = prices[prows['name']]
+        current_price_label = '$' + str(prices[prows['name']])
         change = current_price - prows['price']
-        holding = (prows['name'], prows['shares'], current_price, change)
+        holding = (prows['name'], prows['shares'], current_price_label, change)
         rows.append(holding)
     return rows
 
@@ -50,4 +51,4 @@ print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}'
 print(('-' * 10 + ' ') * 4)
 
 for r in report:
-    print('%10s %10d %10.2f %10.2f' % r)
+    print('%10s %10d %10s %10.2f' % r)
