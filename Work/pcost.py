@@ -39,13 +39,13 @@ def portfolio_cost(filename):
     with open('/Users/shuowang/practical-python/Work/Data/' + str(filename), 'rt') as portfolio:
         rows = csv.reader(portfolio)
         headers = next(rows)
-        for row in rows:
+        for rowno,row in enumerate(rows, start=1):
             try:
                 shares = float(row[1])
                 price = float(row[2])
                 cost += shares * price
             except ValueError:
-                print('Bad row:',row)
+                print(f'Row {rowno}: Bad row: {row}')
     return cost
 
 if len(sys.argv) == 2:
@@ -53,5 +53,5 @@ if len(sys.argv) == 2:
 else:
     filename = 'portfolio.csv'
 
-total_cost = portfolio_cost(filename)
+total_cost = portfolio_cost('missing.csv')
 print('Total cost:', total_cost)
