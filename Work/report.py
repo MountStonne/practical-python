@@ -40,8 +40,13 @@ def portfolio_report(filename_portfolio, filename_price):
     portfolio = read_portfolio(filename_portfolio)
     prices = read_prices(filename_price)
     report = make_report(portfolio,prices)
-
     print_report(report)
 
-portfolio_report('Data/portfolio.csv',
-                 'Data/prices.csv')
+def main(args):
+    if len(args) != 3:
+        raise SystemExit('Usage: %s portfile pricefile' % args[0])
+    portfolio_report(args[1], args[2])
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)
