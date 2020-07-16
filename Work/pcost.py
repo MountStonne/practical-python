@@ -32,27 +32,17 @@
 #     print('Total cost', cost)
 
 ## Exercise 1.32 & 1.33
-import csv
+import report
 import sys
 def portfolio_cost(filename):
-    cost = 0
-    with open('/Users/shuowang/practical-python/Work/Data/' + str(filename), 'rt') as portfolio:
-        rows = csv.reader(portfolio)
-        headers = next(rows)
-        for rowno,row in enumerate(rows, start=1):
-            record = dict(zip(headers, row))
-            try:
-                shares = float(record['shares'])
-                price = float(record['price'])
-                cost += shares * price
-            except ValueError:
-                print(f'Row {rowno}: Bad row: {row}')
-    return cost
+    
+    portfolio = report.read_portfolio(filename)
+    return sum([s['shares']*s['price'] for s in portfolio])
 
 if len(sys.argv) == 2:
     filename = sys.argv[1]
 else:
-    filename = 'portfolio.csv'
+    filename = input('Please enter a filename')
 
-total_cost = portfolio_cost('portfoliodate.csv')
+total_cost = portfolio_cost(filename)
 print('Total cost:', total_cost)

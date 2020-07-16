@@ -32,10 +32,11 @@ def parse_csv(filename, select=None, types=None, has_headers=True, delimiter=','
                     if not silence_errors:
                         print(f"Row{rowno}: Cannot convert {row}")
                         print(f"Row {rowno}: Reason {e}")
+                    continue
             if headers:
                 record = dict(zip(headers, row))
             else:
                 record = tuple(row)
             records.append(record)
 
-        return records
+            return records
