@@ -46,10 +46,11 @@ def make_report(portfolio, prices):
 portfolio = read_portfolio('Data/portfolio.csv')
 prices    = read_prices('Data/prices.csv')
 report = make_report(portfolio, prices)
+def print_report(report):
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
+    print(('-' * 10 + ' ') * 4)
+    for r in report:
+        print('%10s %10d %10s %10.2f' % r)
 
-headers = ('Name', 'Shares', 'Price', 'Change')
-print(f'{headers[0]:>10s} {headers[1]:>10s} {headers[2]:>10s} {headers[3]:>10s}')
-print(('-' * 10 + ' ') * 4)
-
-for r in report:
-    print('%10s %10d %10s %10.2f' % r)
+print_report(report)
